@@ -10,16 +10,16 @@ st.sidebar.header("⚙️ Parâmetros Admin")
 st.sidebar.caption("Pode inserir em % (ex: digite 5 para 5%)")
 
 # Note que adicionei o "/ 100" no final das variáveis de porcentagem
-curva_dolar = st.sidebar.number_input("Curva Dólar (%)", value=5.00, format="%.2f") / 100
-custo_fin_aa = st.sidebar.number_input("Custo Financeiro a.a. (%)", value=10.00, format="%.2f") / 100
-custo_fin_am = st.sidebar.number_input("Custo Financeiro a.m. (%)", value=1.00, format="%.2f") / 100
-quebra = st.sidebar.number_input("Quebra (%)", value=1.00, format="%.2f") / 100
+curva_dolar = st.sidebar.number_input("Curva Dólar (%)", value=8.10, format="%.2f") / 100
+custo_fin_aa = st.sidebar.number_input("Custo Financeiro a.a. (%)", value=7.20, format="%.2f") / 100
+custo_fin_am = st.sidebar.number_input("Custo Financeiro a.m. (%)", value=1.24451, format="%.2f") / 100
+quebra = st.sidebar.number_input("Quebra (%)", value=0.25, format="%.2f") / 100
 
 # Estes continuam normais pois são valores financeiros/dias, e não porcentagens
-impostos = st.sidebar.number_input("Impostos ($ ou R$)", value=0.00, format="%.2f")
-custo_porto = st.sidebar.number_input("Custo Porto", value=15.00, format="%.2f")
+impostos = st.sidebar.number_input("Impostos ($ ou R$)", value=1.70, format="%.2f")
+custo_porto = st.sidebar.number_input("Custo Porto", value=8.50, format="%.2f")
 margem = st.sidebar.number_input("Margem", value=5.00, format="%.2f")
-dias_a_partir = st.sidebar.number_input("Número de dias a partir", value=15, step=1)
+dias_a_partir = st.sidebar.number_input("Número de dias a partir", value=30, step=1)
 
 
 
