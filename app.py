@@ -71,19 +71,20 @@ else:
 
 # --- 4. RESULTADO FINAL NA TELA ---
 st.markdown("---")
-st.header("Resultado Final") # Emoji removido
+st.header("Resultado Final")
 
-# Mostra o preço com destaque
-st.metric(label="Preço Bruto", value=f"$ {preco_bruto:,.2f}")
+# Formatar o número para o padrão de moeda (trocando pontos e vírgulas)
+preco_bruto_formatado = f"{preco_bruto:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+# Mostra o preço com destaque já em R$
+st.metric(label="Preço Bruto", value=f"R$ {preco_bruto_formatado}")
 
 # --- BOTÃO DE COPIAR PARA WHATSAPP ---
 st.write("📄 **Resumo para copiar:**")
-# Montamos o texto organizando as datas no formato brasileiro e o preço
 texto_para_copiar = f"""Data de Entrega: {data_final_entrega.strftime('%d/%m/%Y')}
 Data de Pagamento: {data_pagamento.strftime('%d/%m/%Y')}
-Preço Bruto: $ {preco_bruto:,.2f}"""
+Preço Bruto: R$ {preco_bruto_formatado}"""
 
-# O st.code cria automaticamente um botão de copiar no canto da caixa!
 st.code(texto_para_copiar, language="text")
 
 # --- DETALHES INTERMEDIÁRIOS ---
