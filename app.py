@@ -1,16 +1,38 @@
 import streamlit as st
 import datetime
 
-# --- CONFIGURAÇÃO DA PÁGINA E LOGO ---
+# --- CONFIGURAÇÃO DA PÁGINA E LOGÓTIPO ---
 st.set_page_config(page_title="Formação de Preço", page_icon="🌾")
 
-# Tenta carregar o logo (ajuste "logo.png" para o nome exato do arquivo que você subiu)
 try:
     st.image("logo.png", width=250)
 except:
-    pass # Se a imagem não for encontrada, ele simplesmente segue o código
+    pass
 
 st.title("Formação de Preço")
+
+# --- SISTEMA DE PALAVRA-PASSE ÚNICA ---
+# 1. Cria a memória para verificar se o utilizador já está autorizado
+if "autenticado" not in st.session_state:
+    st.session_state.autenticado = False
+
+# 2. Se não estiver autenticado, mostra o ecrã de bloqueio
+if not st.session_state.autenticado:
+    st.warning("🔒 Acesso Restrito. Insira a palavra-passe para continuar.")
+    
+    # Campo de texto que esconde os caracteres digitados (type="password")
+    senha_digitada = st.text_input("Palavra-passe", type="password")
+    
+    if st.button("Entrar"):
+        # Pode alterar "royal2024" para a palavra-passe que preferir
+        if senha_digitada == "royal2024":
+            st.session_state.autenticado = True
+            st.rerun() # Recarrega a página com o acesso libertado
+        else:
+            st.error("Palavra-passe incorreta!")
+            
+    # O comando st.stop() é o "muro": impede que o Python leia a calculadora abaixo desta linha
+    st.stop()
 
 
 # --- 1. DADOS DO ADMINISTRADOR (Menu Lateral) ---
