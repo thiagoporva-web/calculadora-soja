@@ -2,7 +2,7 @@ import streamlit as st
 import datetime
 
 # --- CONFIGURAÇÃO DA PÁGINA E LOGÓTIPO ---
-st.set_page_config(page_title="Formação de Preço", page_icon="🌾")
+st.set_page_config(page_title="Formação de Preço", page_icon="icone2.jpg")
 
 try:
     st.image("logo.png", width=250)
