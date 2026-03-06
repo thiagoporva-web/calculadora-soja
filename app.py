@@ -1,9 +1,17 @@
 import streamlit as st
 import datetime
 
-# --- CONFIGURAÇÃO DA PÁGINA ---
-st.set_page_config(page_title="Calculadora de Preços", page_icon="🌾")
-st.title("Calculadora de Preços")
+# --- CONFIGURAÇÃO DA PÁGINA E LOGO ---
+st.set_page_config(page_title="Formação de Preço", page_icon="🌾")
+
+# Tenta carregar o logo (ajuste "logo.png" para o nome exato do arquivo que você subiu)
+try:
+    st.image("logo.png", width=250)
+except:
+    pass # Se a imagem não for encontrada, ele simplesmente segue o código
+
+st.title("Formação de Preço")
+
 
 # --- 1. DADOS DO ADMINISTRADOR (Menu Lateral) ---
 st.sidebar.header("⚙️ Parâmetros Admin")
@@ -24,7 +32,7 @@ dias_a_partir = st.sidebar.number_input("Número de dias a partir", value=30, st
 
 
 # --- 2. DADOS DO COMPRADOR (Tela Principal) ---
-st.header("📝 Preencha os Dados")
+st.header("Preencha os Dados")
 
 col1, col2 = st.columns(2) # Cria duas colunas para o layout ficar mais bonito
 with col1:
@@ -63,12 +71,22 @@ else:
 
 # --- 4. RESULTADO FINAL NA TELA ---
 st.markdown("---")
-st.header("📊 Resultado Final")
+st.header("Resultado Final") # Emoji removido
 
 # Mostra o preço com destaque
 st.metric(label="Preço Bruto", value=f"$ {preco_bruto:,.2f}")
 
-# Um botão sanfona (expander) para ver os cálculos intermediários, caso queira conferir se a matemática bate com o Excel
+# --- BOTÃO DE COPIAR PARA WHATSAPP ---
+st.write("📄 **Resumo para copiar:**")
+# Montamos o texto organizando as datas no formato brasileiro e o preço
+texto_para_copiar = f"""Data de Entrega: {data_final_entrega.strftime('%d/%m/%Y')}
+Data de Pagamento: {data_pagamento.strftime('%d/%m/%Y')}
+Preço Bruto: $ {preco_bruto:,.2f}"""
+
+# O st.code cria automaticamente um botão de copiar no canto da caixa!
+st.code(texto_para_copiar, language="text")
+
+# --- DETALHES INTERMEDIÁRIOS ---
 with st.expander("Ver detalhes dos cálculos intermediários"):
     st.write(f"**Número de dias hoje/pagamento:** {dias_hoje_pagamento}")
     st.write(f"**Número de dias entrega/pagamento:** {dias_entrega_pagamento}")
